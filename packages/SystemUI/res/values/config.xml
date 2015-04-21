@@ -82,7 +82,7 @@
 
     <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
     <string name="quick_settings_tiles_stock" translatable="false">
-        internet,wifi,cell,bt,flashlight,dnd,alarm,airplane,nfc,controls,wallet,music,cpuinfo,fpsinfo,dataswitch,sound,rotation,battery,refresh_rate,soundsearch,cast,caffeine,ambient_display,screenrecord,mictoggle,cameratoggle,location,hotspot,aod,inversion,saver,dark,work,night,reverse,sync,reduce_brightness
+        internet,wifi,cell,bt,flashlight,dnd,alarm,airplane,nfc,controls,wallet,music,cpuinfo,fpsinfo,dataswitch,sound,rotation,battery,heads_up,refresh_rate,soundsearch,cast,caffeine,ambient_display,screenrecord,mictoggle,cameratoggle,location,hotspot,aod,inversion,saver,dark,work,night,reverse,sync,reduce_brightness
 
     </string>
 
