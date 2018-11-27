@@ -5941,6 +5941,14 @@ public final class Settings {
         @Readable
         public static final String NOTIFICATION_HEADERS = "notification_headers";
 
+        /**
+         * Whether to show the kill app button in notification guts
+         *
+         * @hide
+         */
+        public static final String NOTIFICATION_GUTS_KILL_APP_BUTTON =
+                "notification_guts_kill_app_button";
+
        /**
          * Whether to show volume panel on the left side
          * Defaults to com.android.systemui.R.bool.config_audioPanelOnLeftSide
