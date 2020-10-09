@@ -5934,6 +5934,13 @@ public final class Settings {
          */
         public static final String STATUSBAR_NOTIF_COUNT = "statusbar_notif_count";
 
+        /**
+         * Controls whether to show notification headers
+         * @hide
+         */
+        @Readable
+        public static final String NOTIFICATION_HEADERS = "notification_headers";
+
        /**
          * Whether to show volume panel on the left side
          * Defaults to com.android.systemui.R.bool.config_audioPanelOnLeftSide
