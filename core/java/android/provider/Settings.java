@@ -5216,6 +5216,24 @@ public final class Settings {
         public static final String MULTI_AUDIO_FOCUS_ENABLED = "multi_audio_focus_enabled";
 
         /**
+         * Optimized charging enabled
+         * @hide
+         */
+        public static final String OPTIMIZED_CHARGE_ENABLED = "optimized_charge_enabled";
+
+        /**
+         * Optimized charging ceiling
+         * @hide
+         */
+        public static final String OPTIMIZED_CHARGE_CEILING = "optimized_charge_ceiling";
+
+        /**
+         * Optimized charging floor
+         * @hide
+         */
+        public static final String OPTIMIZED_CHARGE_FLOOR = "optimized_charge_floor";
+
+        /**
          * Whether the phone ringtone should be played in an increasing manner
          * @hide
          */
@@ -6147,6 +6165,9 @@ public final class Settings {
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_STYLE);
             PRIVATE_SETTINGS.add(STATUS_BAR_LOGO_COLOR_ACCENT);
             PRIVATE_SETTINGS.add(FORCE_FULLSCREEN_CUTOUT_APPS);
+            PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_ENABLED);
+            PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_CEILING);
+            PRIVATE_SETTINGS.add(OPTIMIZED_CHARGE_FLOOR);
         }
 
         /**
