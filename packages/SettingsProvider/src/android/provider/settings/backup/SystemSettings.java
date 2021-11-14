@@ -108,5 +108,6 @@ public class SystemSettings {
         Settings.System.USE_OLD_MOBILETYPE,
         Settings.System.VOLUME_PANEL_ON_LEFT,
         Settings.System.AUTO_BRIGHTNESS_ONE_SHOT,
+        Settings.System.SCREEN_OFF_FOD,
     };
 }
