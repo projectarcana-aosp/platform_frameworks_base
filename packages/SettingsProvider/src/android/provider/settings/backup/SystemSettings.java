@@ -84,9 +84,11 @@ public class SystemSettings {
         Settings.System.DISPLAY_COLOR_MODE,
         Settings.System.ALARM_ALERT,
         Settings.System.NOTIFICATION_LIGHT_PULSE,
-        Settings.System.ARTWORK_MEDIA_BACKGROUND,
-        Settings.System.ARTWORK_MEDIA_BACKGROUND_ENABLE_BLUR,
-        Settings.System.ARTWORK_MEDIA_BACKGROUND_BLUR_RADIUS,
-        Settings.System.ARTWORK_MEDIA_BACKGROUND_ALPHA,
+        Settings.System.RINGTONE_VIBRATION_PATTERN,
+        Settings.System.CUSTOM_RINGTONE_VIBRATION_PATTERN,
+        Settings.System.VIBRATE_ON_CONNECT,
+        Settings.System.VIBRATE_ON_CALLWAITING,
+        Settings.System.VIBRATE_ON_DISCONNECT,
+        Settings.System.FULLSCREEN_GESTURES,
     };
 }
