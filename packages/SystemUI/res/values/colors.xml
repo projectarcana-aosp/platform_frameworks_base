@@ -295,4 +295,10 @@
     <color name="settingslib_track_off_color">@color/settingslib_track_off</color>
     <color name="connected_network_primary_color">#191C18</color>
     <color name="connected_network_secondary_color">#41493D</color>
+    
+    <!-- Acherus -->
+    <color name="qs_tile_oos_background">#272727</color>
+    <color name="qs_tile_oos">#FFFFFF</color>
+    <color name="qs_tile_icon_oos">#909090</color>
+    <color name="color_idk">#ff000000</color>
 </resources>

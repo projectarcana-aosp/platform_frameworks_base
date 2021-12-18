@@ -99,4 +99,10 @@
     <color name="accessibility_floating_menu_background">#B3000000</color> <!-- 70% -->
 
     <color name="people_tile_background">@android:color/system_accent2_800</color>
+    
+    <!-- Acherus -->
+    <color name="qs_tile_oos_background">#DBDBDB</color>
+    <color name="qs_tile_oos">#222222</color>
+    <color name="qs_tile_icon_oos">#98a098</color>
+    <color name="color_idk">#ffffffff</color>
 </resources>
