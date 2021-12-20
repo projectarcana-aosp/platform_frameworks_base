@@ -6000,23 +6000,11 @@ public final class Settings {
          */
         public static final String STATUSBAR_ICONS_STYLE = "statusbar_icons_style";
 
-        /**
-         * Keys we no longer back up under the current schema, but want to continue to
-         * process when restoring historical backup datasets.
-         *
-         * All settings in {@link LEGACY_RESTORE_SETTINGS} array *must* have a non-null validator,
-         * otherwise they won't be restored.
-         *
-         * @hide
-         */
-        public static final String[] LEGACY_RESTORE_SETTINGS = {
-        };
-
-
         /**          
           * Setting to enable/disable gaming mode
           * @hide
           */
+        @Readable
         public static final String GAMING_MODE_ENABLED = "gaming_mode_enabled";
 
         /**
@@ -6136,6 +6124,18 @@ public final class Settings {
          * @hide
          */
         public static final String GAMING_MODE_USE_OVERLAY_MENU = "gaming_mode_use_overlay_menu";
+
+        /**
+         * Keys we no longer back up under the current schema, but want to continue to
+         * process when restoring historical backup datasets.
+         *
+         * All settings in {@link LEGACY_RESTORE_SETTINGS} array *must* have a non-null validator,
+         * otherwise they won't be restored.
+         *
+         * @hide
+         */
+        public static final String[] LEGACY_RESTORE_SETTINGS = {
+        };
 
         /**
          * These are all public system settings
