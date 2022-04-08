@@ -11229,12 +11229,6 @@ public final class Settings {
          * @hide
          */
         public static final String FACE_UNLOCK_METHOD = "face_unlock_method";
-        
-        /**
-         * Control whether GMS is enabled for this user.
-         * @hide
-         */
-        public static final String GMS_ENABLED = "gms_enabled";
 
         /**
          * Whether to show privacy indicator for location
