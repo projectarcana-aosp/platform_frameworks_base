@@ -39,21 +39,12 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
     // A fallback value for max tiles number when setting via Tuner (parseNumTiles)
     public static final int TUNER_MAX_TILES_FALLBACK = 6;
 
-    // Tile Columns on normal conditions
-    public int mMaxColumnsPortrait = 5;
-    public int mMaxColumnsLandscape = 6;
-    // Tile Columns when media player is visible
-    public int mMaxColumnsMediaPlayer = 4;
-
     private boolean mDisabledByPolicy;
     private int mMaxTiles;
 
     public QuickQSPanel(Context context, AttributeSet attrs) {
         super(context, attrs);
         mMaxTiles = getResources().getInteger(R.integer.quick_qs_panel_max_tiles);
-        mMaxColumnsPortrait = getResources().getInteger(R.integer.quick_qs_panel_num_columns);
-        mMaxColumnsLandscape = getResources().getInteger(R.integer.quick_qs_panel_num_columns_landscape);
-        mMaxColumnsMediaPlayer = getResources().getInteger(R.integer.quick_qs_panel_num_columns_media);
     }
 
     @Override
@@ -96,7 +87,6 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
         if (mHorizontalContentContainer != null) {
             mHorizontalContentContainer.setClipChildren(false);
         }
-        updateColumns();
     }
 
     @Override
@@ -142,18 +132,6 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
             state = copy;
         }
         super.drawTile(r, state);
-    }
-
-    public void updateColumns() {
-        boolean isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-
-        int mColumnsMediaPlayer = mUsingHorizontalLayout ? 
-            mMaxColumnsMediaPlayer : 
-            mMaxColumnsLandscape;
-
-        mTileLayout.setMaxColumns(isLandscape ? 
-            mColumnsMediaPlayer : 
-            mMaxColumnsPortrait);
     }
 
     public void setMaxTiles(int maxTiles) {
@@ -225,7 +203,7 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
     void setDisabledByPolicy(boolean disabled) {
         if (disabled != mDisabledByPolicy) {
             mDisabledByPolicy = disabled;
-            setVisibility(disabled ? GONE : VISIBLE);
+            setVisibility(disabled ? View.GONE : View.VISIBLE);
         }
     }
 
@@ -238,10 +216,10 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
     @Override
     public void setVisibility(int visibility) {
         if (mDisabledByPolicy) {
-            if (getVisibility() == GONE) {
+            if (getVisibility() == View.GONE) {
                 return;
             }
-            visibility = GONE;
+            visibility = View.GONE;
         }
         super.setVisibility(visibility);
     }
@@ -272,7 +250,7 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
                     LayoutParams.WRAP_CONTENT);
             setLayoutParams(lp);
-            setMaxColumns(6);
+            setMaxColumns(4);
         }
 
         @Override
@@ -327,11 +305,11 @@ public class QuickQSPanel extends QSPanel implements TunerService.Tunable {
             // We set it as not important while we change this, so setting each tile as selected
             // will not cause them to announce themselves until the user has actually selected the
             // item.
-            setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
+            setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);
             for (int i = 0; i < getChildCount(); i++) {
                 getChildAt(i).setSelected(selected);
             }
-            setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_AUTO);
+            setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_AUTO);
             mLastSelected = selected;
         }
     }
