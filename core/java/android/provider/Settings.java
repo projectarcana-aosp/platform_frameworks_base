@@ -5935,6 +5935,12 @@ public final class Settings {
         public static final String POCKET_JUDGE = "pocket_judge";
 
         /**
+         * Whether to show IME space
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_IME_SPACE = "navigation_bar_ime_space";
+
+        /**
          * Show the pending notification counts as overlays on the status bar
          * @hide
          */
