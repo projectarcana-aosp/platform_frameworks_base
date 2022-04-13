@@ -53,6 +53,7 @@ import android.net.vcn.VcnManager.VcnStatusCode;
 import android.net.vcn.VcnUnderlyingNetworkPolicy;
 import android.net.wifi.WifiInfo;
 import android.os.Binder;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -83,6 +84,7 @@ import com.android.server.vcn.VcnContext;
 import com.android.server.vcn.VcnNetworkProvider;
 import com.android.server.vcn.util.PersistableBundleUtils;
 
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -163,7 +165,8 @@ public class VcnManagementService extends IVcnManagementService.Stub {
     public static final boolean VDBG = false; // STOPSHIP: if true
 
     @VisibleForTesting(visibility = Visibility.PRIVATE)
-    static final String VCN_CONFIG_FILE = "/data/system/vcn/configs.xml";
+    static final String VCN_CONFIG_FILE =
+            new File(Environment.getDataSystemDirectory(), "vcn/configs.xml").getPath();
 
     // TODO(b/176956496): Directly use CarrierServiceBindHelper.UNBIND_DELAY_MILLIS
     @VisibleForTesting(visibility = Visibility.PRIVATE)
