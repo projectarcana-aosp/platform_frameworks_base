@@ -1192,6 +1192,7 @@ public class Instrumentation {
         app.attach(context);
         String packageName = app.getPackageName();
         PixelPropsUtils.setProps(packageName);
+        PixelPropsUtils.initApplicationBeforeOnCreate(app);
         return app;
     }
     
@@ -1211,6 +1212,7 @@ public class Instrumentation {
         app.attach(context);
         String packageName = app.getPackageName();
         PixelPropsUtils.setProps(packageName);
+        PixelPropsUtils.initApplicationBeforeOnCreate(app);
         return app;
     }
 

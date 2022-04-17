@@ -15,6 +15,7 @@
  */
 package com.android.internal.util.custom;
 
+import android.app.Application;
 import android.os.Build;
 import android.util.Log;
 
@@ -29,6 +30,7 @@ public class PixelPropsUtils {
 
     public static final String PACKAGE_GMS = "com.google.android.gms";
     private static final String TAG = PixelPropsUtils.class.getSimpleName();
+    private static final String PROCESS_UNSTABLE = "com.google.android.gms.unstable";
     private static final boolean DEBUG = false;
 
     private static final Map<String, Object> propsToChangePixel6;
@@ -127,6 +129,7 @@ public class PixelPropsUtils {
         }
     }
 
+
     private static void setPropValue(String key, Object value) {
         try {
             if (DEBUG) Log.d(TAG, "Defining prop " + key + " to " + value.toString());
@@ -136,6 +139,12 @@ public class PixelPropsUtils {
             field.setAccessible(false);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             Log.e(TAG, "Failed to set prop " + key, e);
+        }
+    }
+
+    public static void initApplicationBeforeOnCreate(Application app) {
+        if (PROCESS_UNSTABLE.equals(Application.getProcessName())) {
+            sIsGms = true;
         }
     }
 
