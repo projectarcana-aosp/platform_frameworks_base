@@ -154,9 +154,6 @@ public class PixelPropsUtils {
         if (packageName == null) {
             return;
         }
-        if (packageName.equals(PACKAGE_GMS)) {
-            sIsGms = true;
-        }
         if (packageName.startsWith("com.google.")
                 || Arrays.asList(extraPackagesToChange).contains(packageName)
                 || Arrays.asList(streamingPackagesToChange).contains(packageName)) {
@@ -187,6 +184,9 @@ public class PixelPropsUtils {
                 }
                 if (DEBUG) Log.d(TAG, "Defining " + key + " prop for: " + packageName);
                 setPropValue(key, value);
+            }
+	    if (packageName.equals(PACKAGE_GMS)) {
+                sIsGms = true;
             }
             // Set proper indexing fingerprint
             if (packageName.equals("com.google.android.settings.intelligence")) {
