@@ -34,6 +34,7 @@ public class PixelPropsUtils {
     private static final String PROCESS_UNSTABLE = "com.google.android.gms.unstable";
     private static final boolean DEBUG = false;
 
+    private static final Map<String, Object> propsToChange;
     private static final Map<String, Object> propsToChangePixel6;
     private static final Map<String, Object> propsToChangePixel5;
     private static final Map<String, Object> propsToChangePixelXL;
@@ -45,16 +46,22 @@ public class PixelPropsUtils {
     
     private static final String[] packagesToChangePixel6 = {
             "com.google.android.gms",
-            "com.google.android.inputmethod.latin"
+            "com.google.android.inputmethod.latin",
+            "com.android.chrome",
+            "com.breel.wallpapers20"
     };
 
     private static final String[] packagesToChangePixelXL = {
-            "com.google.android.apps.photos"
-    };
-
-    private static final String[] extraPackagesToChange = {
-            "com.android.chrome",
-            "com.breel.wallpapers20"
+            "com.samsung.accessory",
+            "com.samsung.accessory.fridaymgr",
+            "com.samsung.accessory.berrymgr",
+            "com.samsung.accessory.neobeanmgr",
+            "com.samsung.android.app.watchmanager",
+            "com.samsung.android.geargplugin",
+            "com.samsung.android.gearnplugin",
+            "com.samsung.android.modenplugin",
+            "com.samsung.android.neatplugin",
+            "com.samsung.android.waterplugin"
     };
 
     private static final String[] streamingPackagesToChange = {
@@ -97,6 +104,26 @@ public class PixelPropsUtils {
             "com.mobile.legends"
     };
 
+    private static final String[] packagesToKeep = {
+    	    "com.google.android.GoogleCamera",
+            "com.google.android.GoogleCamera.Cameight",
+            "com.google.android.GoogleCamera.Go",
+            "com.google.android.GoogleCamera.Urnyx",
+            "com.google.android.GoogleCameraAsp",
+            "com.google.android.GoogleCameraCVM",
+            "com.google.android.GoogleCameraEng",
+            "com.google.android.GoogleCameraEng2",
+            "com.google.android.GoogleCameraGood",
+            "com.google.android.MTCL83",
+            "com.google.android.UltraCVM",
+            "com.google.android.apps.cameralite",
+            "com.google.android.apps.youtube.kids",
+            "com.google.android.apps.youtube.music",
+            "com.google.android.dialer",
+            "com.google.android.youtube",
+            "com.google.ar.core"
+    };
+    
     private static ArrayList<String> allProps = new ArrayList<>(
             Arrays.asList("BRAND", "MANUFACTURER", "DEVICE", "PRODUCT", "MODEL", "FINGERPRINT"));
 
@@ -104,11 +131,9 @@ public class PixelPropsUtils {
 
     static {
         propsToKeep = new HashMap<>();
+        propsToChange = new HashMap<>();
         propsToKeep.put("com.google.android.settings.intelligence",
                             new ArrayList<>(Collections.singletonList("FINGERPRINT")));
-        propsToKeep.put("com.google.android.GoogleCamera", allProps);
-        propsToKeep.put("com.google.android.apps.cameralite", allProps);
-        propsToKeep.put("com.google.android.dialer", allProps);
         propsToChangePixel6 = new HashMap<>();
         propsToChangePixel6.put("BRAND", "google");
         propsToChangePixel6.put("MANUFACTURER", "Google");
@@ -153,25 +178,31 @@ public class PixelPropsUtils {
         if (packageName == null) {
             return;
         }
-        if (packageName.startsWith("com.google.")
-                || Arrays.asList(extraPackagesToChange).contains(packageName)
-                || Arrays.asList(streamingPackagesToChange).contains(packageName)) {
+        if (packageName.startsWith("com.google.") && !Arrays.asList(packagesToKeep).contains(packageName)) {
                 
            if (Arrays.asList(streamingPackagesToChange).contains(packageName)) {
-                if (!SystemProperties.getBoolean("persist.sys.pixelprops.streaming", true))
+                if (SystemProperties.getBoolean("persist.sys.pixelprops.streaming", true)) {
+                    propsToChange.putAll(propsToChangePixel6);
+                } else {
                     return;
+                }
             }
 
-            Map<String, Object> propsToChange = propsToChangePixel5;
-
-            if (Arrays.asList(packagesToChangePixel6).contains(packageName)) {
-                propsToChange = propsToChangePixel6;
-            }
-
-            if (Arrays.asList(packagesToChangePixelXL).contains(packageName)) {
-                propsToChange = propsToChangePixelXL;
-            }
-
+            if (packageName.equals("com.google.android.apps.photos")) {
+                if (SystemProperties.getBoolean("persist.sys.pixelprops.gphotos", true)) {
+                    propsToChange.putAll(propsToChangePixelXL);
+                } else {
+                    propsToChange.putAll(propsToChangePixel5);
+                }
+            } else {
+                if (Arrays.asList(packagesToChangePixel6).contains(packageName)) {
+                    propsToChange.putAll(propsToChangePixel6);
+                } else if (Arrays.asList(packagesToChangePixelXL).contains(packageName)) {
+                    propsToChange.putAll(propsToChangePixelXL);
+                } else {
+                    propsToChange.putAll(propsToChangePixel5);
+                }
+	    }
             if (DEBUG) Log.d(TAG, "Defining props for: " + packageName);
             for (Map.Entry<String, Object> prop : propsToChange.entrySet()) {
                 String key = prop.getKey();
